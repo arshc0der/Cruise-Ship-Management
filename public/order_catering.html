@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Order Catering</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://kit.fontawesome.com/a2e0b8fc1b.js" crossorigin="anonymous"></script>
+</head>
+
+<body class="bg-yellow-50 min-h-screen flex flex-col justify-between">
+
+  <!-- Header -->
+  <header class="bg-yellow-600 text-white p-4 shadow-md">
+    <div class="max-w-4xl mx-auto flex items-center gap-3 text-xl font-semibold">
+      <i class="fas fa-utensils"></i>
+      Order Catering
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="flex-grow p-6">
+    <div class="max-w-md mx-auto bg-white p-6 rounded-2xl shadow-lg">
+
+      <!-- Back button -->
+      <button id="backBtn"
+        class="text-blue-600 text-sm underline mb-4 hover:text-blue-800">
+        ← Back to Dashboard
+      </button>
+
+      <!-- Catering Order Form -->
+      <form id="cateringForm" class="space-y-5">
+        <div>
+          <label for="itemSelect" class="block text-sm font-medium text-gray-700 mb-1">Select Item</label>
+          <select id="itemSelect"
+            class="w-full border border-gray-300 p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-400"
+            required>
+            <option value="">-- Choose an item --</option>
+          </select>
+        </div>
+
+        <div id="customItemContainer" class="hidden">
+          <label for="customItem" class="block text-sm font-medium text-gray-700 mb-1">Custom Item</label>
+          <input id="customItem" type="text" placeholder="Enter item name"
+            class="w-full border border-gray-300 p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-400" />
+        </div>
+
+        <div>
+          <label for="quantity" class="block text-sm font-medium text-gray-700 mb-1">Quantity</label>
+          <input id="quantity" type="number" min="1" placeholder="e.g. 3"
+            class="w-full border border-gray-300 p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-400"
+            required />
+        </div>
+
+        <button type="submit"
+          class="w-full bg-yellow-600 text-white py-3 rounded-lg hover:bg-yellow-700 transition font-semibold">
+          <i class="fas fa-paper-plane mr-1"></i> Place Order
+        </button>
+      </form>
+
+      <!-- Orders -->
+      <section id="placedOrders" class="mt-8 space-y-3"></section>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-yellow-600 text-white text-center py-3 text-sm">
+    &copy; 2025 Catering System · All rights reserved
+  </footer>
+
+  <!-- Scripts -->
+  <script src="/env.js"></script>
+  <script type="module" src="/js/loadCateringMenu.js"></script>
+  <script type="module" src="/js/catering.js"></script>
+</body>
+
+</html>

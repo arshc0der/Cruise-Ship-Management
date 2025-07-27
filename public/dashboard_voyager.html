@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Voyager Dashboard</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+</head>
+<body class="bg-gray-100 min-h-screen flex flex-col">
+
+  <!-- Navbar -->
+  <header class="bg-white shadow-sm p-4 flex justify-between items-center">
+    <h1 class="text-xl md:text-2xl font-bold text-blue-600 flex items-center">
+      <i class="fas fa-ship mr-2"></i> Voyager Dashboard
+    </h1>
+
+    <div class="flex items-center gap-4">
+      <div id="userInfo" class="text-sm text-right hidden sm:block"></div>
+      <button id="logoutBtn" class="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600 text-sm">
+        <i class="fas fa-sign-out-alt mr-1"></i> Logout
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Layout -->
+  <div class="flex flex-1">
+
+    <!-- Sidebar (hidden on mobile) -->
+    <aside class="hidden md:block w-64 bg-white border-r p-4 space-y-4">
+      <p class="text-gray-500 text-xs uppercase tracking-wide mb-2">Navigation</p>
+      <nav class="space-y-2">
+        <a href="/order_catering.html" class="block text-sm text-gray-700 hover:text-blue-600"><i class="fas fa-utensils mr-2 text-yellow-600"></i> Order Catering</a>
+        <a href="/order_stationery.html" class="block text-sm text-gray-700 hover:text-blue-600"><i class="fas fa-pencil-alt mr-2 text-green-600"></i> Order Stationery</a>
+        <a href="/book_resort.html" class="block text-sm text-gray-700 hover:text-blue-600"><i class="fas fa-hotel mr-2 text-blue-600"></i> Book Resort / Movie</a>
+        <a href="/book_salon.html" class="block text-sm text-gray-700 hover:text-blue-600"><i class="fas fa-spa mr-2 text-pink-500"></i> Book Salon</a>
+        <a href="/book_fitness.html" class="block text-sm text-gray-700 hover:text-blue-600"><i class="fas fa-dumbbell mr-2 text-red-600"></i> Book Fitness Center</a>
+        <a href="/book_party.html" class="block text-sm text-gray-700 hover:text-blue-600"><i class="fas fa-glass-cheers mr-2 text-purple-600"></i> Book Party Hall</a>
+      </nav>
+    </aside>
+
+    <!-- Content -->
+    <main class="flex-1 p-6">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+
+        <a href="/order_catering.html" class="bg-yellow-100 hover:bg-yellow-200 p-4 rounded-lg shadow flex items-center gap-4 transition-all">
+          <i class="fas fa-utensils fa-lg text-yellow-600"></i>
+          <span>Order Catering</span>
+        </a>
+
+        <a href="/order_stationery.html" class="bg-green-100 hover:bg-green-200 p-4 rounded-lg shadow flex items-center gap-4 transition-all">
+          <i class="fas fa-pencil-alt fa-lg text-green-600"></i>
+          <span>Order Stationery</span>
+        </a>
+
+        <a href="/book_resort.html" class="bg-blue-100 hover:bg-blue-200 p-4 rounded-lg shadow flex items-center gap-4 transition-all">
+          <i class="fas fa-hotel fa-lg text-blue-600"></i>
+          <span>Book Resort / Movie</span>
+        </a>
+
+        <a href="/book_salon.html" class="bg-pink-100 hover:bg-pink-200 p-4 rounded-lg shadow flex items-center gap-4 transition-all">
+          <i class="fas fa-spa fa-lg text-pink-600"></i>
+          <span>Book Salon</span>
+        </a>
+
+        <a href="/book_fitness.html" class="bg-red-100 hover:bg-red-200 p-4 rounded-lg shadow flex items-center gap-4 transition-all">
+          <i class="fas fa-dumbbell fa-lg text-red-600"></i>
+          <span>Book Fitness Center</span>
+        </a>
+
+        <a href="/book_party.html" class="bg-purple-100 hover:bg-purple-200 p-4 rounded-lg shadow flex items-center gap-4 transition-all">
+          <i class="fas fa-glass-cheers fa-lg text-purple-600"></i>
+          <span>Book Party Hall</span>
+        </a>
+
+      </div>
+    </main>
+  </div>
+
+  <!-- Footer -->
+  <footer class="bg-white text-center text-sm text-gray-500 py-4 border-t">
+    &copy; 2025 Cruise Management System • All rights reserved
+  </footer>
+
+  <!-- Scripts -->
+  <script src="/env.js"></script>
+  <script type="module" src="/js/logout.js"></script>
+</body>
+</html>

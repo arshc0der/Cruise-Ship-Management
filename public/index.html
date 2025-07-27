@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Login - Cruise Voyager System</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+
+  <style>
+    .tab-btn.active {
+      @apply border-b-2 font-semibold;
+    }
+
+    .fade {
+      opacity: 0;
+      transform: translateY(10px);
+      transition: all 0.4s ease;
+    }
+
+    .fade.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .role-bg-voyager {
+      background: linear-gradient(to bottom right, #ebf8ff, #ffffff);
+    }
+
+    .role-bg-admin {
+      background: linear-gradient(to bottom right, #ffe5e5, #ffffff);
+    }
+
+    .role-bg-manager {
+      background: linear-gradient(to bottom right, #e6ffed, #ffffff);
+    }
+
+    .role-bg-cook {
+      background: linear-gradient(to bottom right, #fff5e6, #ffffff);
+    }
+
+    .role-bg-supervisor {
+      background: linear-gradient(to bottom right, #f3e8ff, #ffffff);
+    }
+
+    .spinner {
+      border: 3px solid #f3f3f3;
+      border-top: 3px solid #3498db;
+      border-radius: 50%;
+      width: 18px;
+      height: 18px;
+      animation: spin 0.8s linear infinite;
+      display: inline-block;
+      margin-right: 8px;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+  </style>
+</head>
+
+<body id="body" class="min-h-screen flex flex-col role-bg-voyager text-gray-800 transition-colors duration-500">
+
+  <!-- Header -->
+  <header class="bg-white shadow p-5 text-center">
+    <h1 id="roleHeading" class="text-3xl font-extrabold text-blue-700 flex items-center justify-center gap-3 fade show">
+      <i class="fas fa-ship"></i>
+      <span id="roleTitle">Voyager</span> Login
+    </h1>
+  </header>
+
+  <!-- Login Container -->
+  <main class="flex-grow flex justify-center items-center px-4">
+    <div class="bg-white p-8 rounded-xl shadow-lg w-full max-w-md border border-gray-200">
+
+      <!-- Tabs -->
+      <div class="flex justify-between gap-2 mb-6 border-b pb-2 text-sm font-medium text-gray-600">
+        <button class="tab-btn active flex-1 text-center py-2" data-role="voyager"><i class="fas fa-user"></i> Voyager</button>
+        <button class="tab-btn flex-1 text-center py-2" data-role="admin"><i class="fas fa-user-shield"></i> Admin</button>
+        <button class="tab-btn flex-1 text-center py-2" data-role="manager"><i class="fas fa-clipboard-list"></i> Manager</button>
+        <button class="tab-btn flex-1 text-center py-2" data-role="cook"><i class="fas fa-utensils"></i> Head Cook</button>
+        <button class="tab-btn flex-1 text-center py-2" data-role="supervisor"><i class="fas fa-user-tie"></i> Supervisor</button>
+      </div>
+
+      <!-- Login Form -->
+      <form id="loginForm" class="space-y-5 fade show">
+        <input id="email" type="email" placeholder="Email" class="w-full border p-2 rounded" required />
+        <input id="password" type="password" placeholder="Password" class="w-full border p-2 rounded" required />
+
+        <button id="loginBtn" class="bg-blue-600 hover:bg-blue-700 text-white w-full py-2 rounded flex justify-center items-center gap-2">
+          <i class="fas fa-sign-in-alt"></i> <span id="btnText">Login</span>
+        </button>
+
+        <p id="loginError" class="text-red-500 text-sm hidden text-center mt-2"></p>
+      </form>
+
+      <p class="text-sm mt-6 text-center">
+        <i class="fas fa-user-plus text-green-500 mr-1"></i>
+        New Voyager? <a href="/register.html" class="text-blue-600 hover:underline">Register here</a>
+      </p>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="text-center text-sm text-gray-500 p-4 mt-auto">
+    &copy; 2025 Cruise Voyager System
+  </footer>
+
+  <!-- Scripts -->
+  <script src="/env.js"></script>
+  <script type="module" src="/js/auth.js"></script>
+
+  <script>
+    const roleTitle = document.getElementById("roleTitle");
+    const roleHeading = document.getElementById("roleHeading");
+    const loginForm = document.getElementById("loginForm");
+    const tabs = document.querySelectorAll(".tab-btn");
+    const body = document.getElementById("body");
+
+    let selectedRole = "voyager";
+    let animating = false;
+
+    const bgClasses = {
+      voyager: 'role-bg-voyager',
+      admin: 'role-bg-admin',
+      manager: 'role-bg-manager',
+      cook: 'role-bg-cook',
+      supervisor: 'role-bg-supervisor'
+    };
+
+    tabs.forEach(tab => {
+      tab.addEventListener("click", () => {
+        if (animating || tab.classList.contains("active")) return;
+
+        animating = true;
+        tabs.forEach(t => t.classList.remove("active"));
+        tab.classList.add("active");
+
+        const newRole = tab.dataset.role;
+
+        // Remove fade and background, then switch content
+        roleHeading.classList.remove("show");
+        loginForm.classList.remove("show");
+
+        setTimeout(() => {
+          selectedRole = newRole;
+          roleTitle.textContent = capitalize(newRole);
+
+          // Switch background class
+          body.className = `min-h-screen flex flex-col ${bgClasses[newRole]} text-gray-800 transition-colors duration-500`;
+
+          roleHeading.classList.add("show");
+          loginForm.classList.add("show");
+
+          animating = false;
+        }, 300);
+      });
+    });
+
+    function capitalize(str) {
+      return str.charAt(0).toUpperCase() + str.slice(1);
+    }
+
+    window.selectedRole = () => selectedRole;
+  </script>
+</body>
+</html>

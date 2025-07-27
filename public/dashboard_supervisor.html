@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Supervisor Dashboard</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <style>
+    .fade-in {
+      animation: fadeIn 0.4s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body class="bg-green-50 text-gray-800 min-h-screen flex flex-col">
+
+  <!-- Navbar -->
+  <header class="bg-white shadow-sm p-4 flex justify-between items-center">
+    <h1 class="text-xl md:text-2xl font-bold text-green-700 flex items-center">
+      <i class="fas fa-ship mr-2"></i> Supervisor Dashboard
+    </h1>
+
+    <div class="flex items-center gap-4">
+      <div id="userInfo" class="text-sm text-right hidden sm:block"></div>
+      <button id="logoutBtn" class="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600 text-sm">
+        <i class="fas fa-sign-out-alt mr-1"></i> Logout
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="flex-1 p-6 max-w-4xl mx-auto w-full">
+    <p class="text-lg mb-4">📦 Stationery orders placed by voyagers:</p>
+    <div id="stationeryOrders" class="space-y-4"></div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="text-center text-sm text-gray-500 py-4 bg-white shadow-inner">
+    &copy; 2025 Cruise Supply Dept.
+  </footer>
+
+  <!-- Scripts -->
+  <script src="/env.js"></script>
+  <script type="module" src="/js/supervisor.js"></script>
+  <script type="module" src="/js/logout.js"></script>
+</body>
+</html>

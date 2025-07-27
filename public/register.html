@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Voyager Register</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+</head>
+<body class="flex justify-center items-center h-screen bg-gray-100">
+  <div class="bg-white p-6 rounded shadow w-full max-w-sm">
+    <h2 class="text-xl font-bold mb-4 text-green-600 flex items-center gap-2">
+      <i class="fas fa-user-plus"></i> Register
+    </h2>
+    <form id="registerForm" class="space-y-4">
+      <input id="email" type="email" placeholder="Email" class="w-full border p-2 rounded" required />
+      <input id="password" type="password" placeholder="Password" class="w-full border p-2 rounded" required />
+      <button class="bg-green-500 text-white w-full p-2 rounded">Register</button>
+      <p id="registerError" class="text-red-500 text-sm hidden mt-2"></p>
+    </form>
+    <p class="text-sm mt-4 text-center">Already registered? <a href="/index.html" class="text-blue-500 hover:underline">Login</a></p>
+  </div>
+  <script src="/env.js"></script>
+  <script type="module" src="/js/register.js"></script>
+</body>
+</html>

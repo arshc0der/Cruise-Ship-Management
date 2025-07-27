@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Book Resort / Movie</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+</head>
+
+<body class="bg-gradient-to-br from-blue-50 to-blue-100 min-h-screen flex flex-col">
+
+  <!-- Header -->
+  <header class="bg-blue-700 text-white p-4 shadow-md text-center text-xl font-bold">
+    <i class="fas fa-ship mr-2"></i> Cruise Voyage Booking Portal
+  </header>
+
+  <!-- Main -->
+  <main class="flex-grow p-6">
+    <div class="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6">
+      <!-- Resort Booking -->
+      <section class="bg-white p-6 rounded-lg shadow hover:shadow-lg transition">
+        <h2 class="text-xl font-semibold mb-4 flex items-center text-blue-600">
+          <i class="fas fa-hotel mr-2"></i> Resort Booking
+        </h2>
+        <form id="resortForm" class="space-y-4">
+          <select id="resortName" class="w-full border border-blue-300 p-2 rounded focus:ring focus:ring-blue-200" required>
+            <option value="" disabled selected>Select Resort Type</option>
+            <option value="Oceanview">Oceanview</option>
+            <option value="Balcony">Balcony View</option>
+            <option value="Corridor">Corridor View</option>
+            <option value="Lounge">Lounge</option>
+          </select>
+          <input id="resortSeats" type="number" min="1" placeholder="Guests" class="w-full border border-blue-300 p-2 rounded" required />
+          <button type="submit" class="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700 transition">Book Resort</button>
+        </form>
+        <div id="resortBookings" class="mt-6 text-sm text-gray-700 space-y-2"></div>
+      </section>
+
+      <!-- Movie Booking -->
+      <section class="bg-white p-6 rounded-lg shadow hover:shadow-lg transition">
+        <h2 class="text-xl font-semibold mb-4 flex items-center text-green-600">
+          <i class="fas fa-ticket-alt mr-2"></i> Movie Booking
+        </h2>
+        <form id="movieForm" class="space-y-4">
+          <input id="movieName" placeholder="Movie Name" class="w-full border border-green-300 p-2 rounded" required />
+          <input id="movieSeats" type="number" min="1" placeholder="Number of Seats" class="w-full border border-green-300 p-2 rounded" required />
+          <button type="submit" class="w-full bg-green-600 text-white py-2 rounded hover:bg-green-700 transition">Book Movie</button>
+        </form>
+        <div id="movieBookings" class="mt-6 text-sm text-gray-700 space-y-2"></div>
+      </section>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-blue-700 text-white text-center py-3 text-sm">
+    &copy; 2025 Cruise Voyage App · All rights reserved
+  </footer>
+
+  <!-- Scripts -->
+  <script src="/env.js"></script>
+  <script type="module" src="/js/resort.js"></script>
+  <script type="module" src="/js/movie.js"></script>
+</body>
+
+</html>

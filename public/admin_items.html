@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Admin - Manage Menu Items</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+  .fade-in {
+    animation: fadeInUp 0.4s ease-out forwards;
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  @keyframes fadeInUp {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+</style>
+
+</head>
+<body class="bg-gray-100 text-gray-800 min-h-screen flex flex-col">
+
+  <!-- Header -->
+  <header class="bg-white shadow p-4">
+    <h1 class="text-2xl font-bold text-center text-blue-700">
+      <i class="fas fa-edit"></i> Manage Menu Items
+    </h1>
+  </header>
+
+  <!-- Main Content -->
+  <main class="flex-grow p-6 max-w-2xl mx-auto">
+    <form id="itemForm" class="bg-white p-4 rounded shadow space-y-4">
+      <!-- Back to Dashboard -->
+      <button onclick="window.location.href='/dashboard_admin.html'"
+        class="text-sm text-pink-600 underline hover:text-pink-800 mb-4">
+        ← Back to Dashboard
+      </button>
+
+      <div class="flex gap-4">
+        <select id="type" class="border p-2 rounded w-1/2" required>
+          <option value="">Select Type</option>
+          <option value="catering">Catering</option>
+          <option value="stationery">Stationery</option>
+        </select>
+        <input id="name" type="text" placeholder="Item Name" class="border p-2 rounded w-1/2" required />
+      </div>
+      <button class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition">
+        <i class="fas fa-plus"></i> Add Item
+      </button>
+    </form>
+
+    <div id="itemList" class="mt-6">
+      <!-- Items will be loaded here -->
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="text-center text-sm text-gray-500 p-4">
+    &copy; 2025 Cruise Voyager Admin Panel
+  </footer>
+
+  <script src="/env.js"></script>
+  <script type="module" src="/js/admin.js"></script>
+</body>
+</html>

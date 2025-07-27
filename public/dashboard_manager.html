@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Manager Dashboard</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <style>
+    .fade-in {
+      animation: fadeInUp 0.5s ease-in-out forwards;
+      opacity: 0;
+      transform: translateY(10px);
+    }
+
+    @keyframes fadeInUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+  <!-- Navbar -->
+  <header class="bg-white shadow-sm p-4 flex flex-wrap justify-between items-center gap-y-2">
+    <div class="flex items-center gap-3 text-xl font-bold text-green-700">
+      <i class="fas fa-clipboard-list mr-2"></i> Manager Dashboard
+    </div>
+
+    <!-- User Info + Logout -->
+    <div class="flex items-center gap-4">
+      <div id="userInfo" class="text-sm text-right hidden sm:block"></div>
+      <button id="logoutBtn" class="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600 text-sm">
+        <i class="fas fa-sign-out-alt mr-1"></i> Logout
+      </button>
+    </div>
+  </header>
+
+  <!-- Dashboard Content -->
+  <main class="p-6 max-w-5xl mx-auto space-y-8">
+    
+    <!-- Resort Bookings -->
+    <section class="fade-in">
+      <h2 class="text-xl font-semibold text-blue-700 mb-2"><i class="fas fa-hotel mr-1"></i> Resort Bookings</h2>
+      <div id="resortList" class="space-y-4"></div>
+    </section>
+
+    <!-- Movie Bookings -->
+    <section class="fade-in">
+      <h2 class="text-xl font-semibold text-yellow-700 mb-2"><i class="fas fa-film mr-1"></i> Movie Bookings</h2>
+      <div id="movieList" class="space-y-4"></div>
+    </section>
+
+    <!-- Salon Bookings -->
+    <section class="fade-in">
+      <h2 class="text-xl font-semibold text-pink-700 mb-2"><i class="fas fa-spa mr-1"></i> Beauty Salon Bookings</h2>
+      <div id="salonList" class="space-y-4"></div>
+    </section>
+
+    <!-- Fitness Center Bookings -->
+    <section class="fade-in">
+      <h2 class="text-xl font-semibold text-red-700 mb-2"><i class="fas fa-dumbbell mr-1"></i> Fitness Center Bookings</h2>
+      <div id="fitnessList" class="space-y-4"></div>
+    </section>
+
+    <!-- Party Hall Bookings -->
+    <section class="fade-in">
+      <h2 class="text-xl font-semibold text-purple-700 mb-2"><i class="fas fa-glass-cheers mr-1"></i> Party Hall Bookings</h2>
+      <div id="partyList" class="space-y-4"></div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-white text-center text-sm text-gray-500 py-4 border-t">
+    &copy; 2025 Cruise Admin Panel · All rights reserved
+  </footer>
+
+  <script src="/env.js"></script>
+  <script type="module" src="/js/manager.js"></script>
+  <script type="module" src="/js/logout.js"></script>
+</body>
+</html>
