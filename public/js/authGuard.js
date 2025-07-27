@@ -30,8 +30,7 @@ export function requireAuth(expectedRole = null) {
       const role = docSnap.data().role;
 
       if (expectedRole && role !== expectedRole) {
-        alert("Access denied. Only " + expectedRole + "s can access this page.");
-        window.location.href = '/dashboard_voyager.html';
+        window.location.href = '/access_denied.html';
         reject("Insufficient role");
         return;
       }
