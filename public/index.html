@@ -9,10 +9,6 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 
   <style>
-    .tab-btn.active {
-      @apply border-b-2 font-semibold;
-    }
-
     .fade {
       opacity: 0;
       transform: translateY(10px);
@@ -60,6 +56,20 @@
         transform: rotate(360deg);
       }
     }
+
+    .tab-btn {
+      @apply flex-1 text-center py-2 rounded transition-all duration-300;
+    }
+
+    .tab-btn.active {
+      @apply text-white font-semibold shadow;
+    }
+
+    .tab-voyager.active { background-color: #f5fcff; border-radius: 10px; padding: 10px; border: 2px solid #2563eb;}
+    .tab-admin.active { background-color: #fff2f2; border-radius: 10px; padding: 10px; border: 2px solid #dc2626;}
+    .tab-manager.active { background-color: #f0fff4; border-radius: 10px; padding: 10px; border: 2px solid #16a34a;}
+    .tab-cook.active { background-color: #fffaf4; border-radius: 10px; padding: 10px; border: 2px solid #d97706;}
+    .tab-supervisor.active { background-color: #f9f4ff; border-radius: 10px; padding: 10px; border: 2px solid #7e22ce;}
   </style>
 </head>
 
@@ -78,17 +88,12 @@
     <div class="bg-white p-8 rounded-xl shadow-lg w-full max-w-md border border-gray-200">
 
       <!-- Tabs -->
-      <div class="flex justify-between gap-2 mb-6 border-b pb-2 text-sm font-medium text-gray-600">
-        <button class="tab-btn active flex-1 text-center py-2" data-role="voyager"><i class="fas fa-user"></i>
-          Voyager</button>
-        <button class="tab-btn flex-1 text-center py-2" data-role="admin"><i class="fas fa-user-shield"></i>
-          Admin</button>
-        <button class="tab-btn flex-1 text-center py-2" data-role="manager"><i class="fas fa-clipboard-list"></i>
-          Manager</button>
-        <button class="tab-btn flex-1 text-center py-2" data-role="cook"><i class="fas fa-utensils"></i> Head
-          Cook</button>
-        <button class="tab-btn flex-1 text-center py-2" data-role="supervisor"><i class="fas fa-user-tie"></i>
-          Supervisor</button>
+      <div class="flex justify-between gap-2 mb-6 text-sm font-medium text-gray-600">
+        <button class="tab-btn tab-voyager active" data-role="voyager"><i class="fas fa-user"></i> Voyager</button>
+        <button class="tab-btn tab-admin" data-role="admin"><i class="fas fa-user-shield"></i> Admin</button>
+        <button class="tab-btn tab-manager" data-role="manager"><i class="fas fa-clipboard-list"></i> Manager</button>
+        <button class="tab-btn tab-cook" data-role="cook"><i class="fas fa-utensils"></i> Head Cook</button>
+        <button class="tab-btn tab-supervisor" data-role="supervisor"><i class="fas fa-user-tie"></i> Supervisor</button>
       </div>
 
       <!-- Login Form -->
@@ -124,6 +129,8 @@
     const roleTitle = document.getElementById("roleTitle");
     const roleHeading = document.getElementById("roleHeading");
     const loginForm = document.getElementById("loginForm");
+    const loginBtn = document.getElementById("loginBtn");
+    const btnText = document.getElementById("btnText");
     const tabs = document.querySelectorAll(".tab-btn");
     const body = document.getElementById("body");
 
@@ -138,17 +145,25 @@
       supervisor: 'role-bg-supervisor'
     };
 
+    const btnClasses = {
+      voyager: ['bg-blue-600', 'hover:bg-blue-700'],
+      admin: ['bg-red-600', 'hover:bg-red-700'],
+      manager: ['bg-green-600', 'hover:bg-green-700'],
+      cook: ['bg-orange-500', 'hover:bg-orange-600'],
+      supervisor: ['bg-purple-600', 'hover:bg-purple-700']
+    };
+
     tabs.forEach(tab => {
       tab.addEventListener("click", () => {
         if (animating || tab.classList.contains("active")) return;
 
         animating = true;
+
         tabs.forEach(t => t.classList.remove("active"));
         tab.classList.add("active");
 
         const newRole = tab.dataset.role;
 
-        // Remove fade and background, then switch content
         roleHeading.classList.remove("show");
         loginForm.classList.remove("show");
 
@@ -156,12 +171,14 @@
           selectedRole = newRole;
           roleTitle.textContent = capitalize(newRole);
 
-          // Switch background class
+          // Background
           body.className = `min-h-screen flex flex-col ${bgClasses[newRole]} text-gray-800 transition-colors duration-500`;
+
+          // Login button color
+          loginBtn.className = `text-white w-full py-2 rounded flex justify-center items-center gap-2 ${btnClasses[newRole].join(' ')}`;
 
           roleHeading.classList.add("show");
           loginForm.classList.add("show");
-
           animating = false;
         }, 300);
       });
